@@ -1,0 +1,71 @@
+<ion-header class="bg-thime">
+    <ion-navbar>
+        <button ion-button menuToggle>
+     <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Help Center
+            <span float-right>               
+              <ion-icon name="ios-cart-outline" class="icon" (click)="cartPage()"></ion-icon>
+            </span>
+        </ion-title>
+    </ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)" (click)="searchPage()"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+            {{ item }}
+        </ion-item>
+    </ion-list>
+</ion-header>
+
+<ion-content class="bg-light">
+    <h6 padding-left>Top FAQ</h6>
+    <ion-card>
+        <ion-card-header>
+            Order tracking and Delivery
+            <ion-icon name="ios-arrow-forward-outline" float-right></ion-icon>
+        </ion-card-header>
+        <ion-card-content class="text-light">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Refund
+            <ion-icon name="ios-arrow-forward-outline" float-right></ion-icon>
+        </ion-card-header>
+        <ion-card-content class="text-light">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Cancellation of orders
+            <ion-icon name="ios-arrow-forward-outline" float-right></ion-icon>
+        </ion-card-header>
+        <ion-card-content class="text-light">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Seller Support
+            <ion-icon name="ios-arrow-forward-outline" float-right></ion-icon>
+        </ion-card-header>
+        <ion-card-content class="text-light">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Payments
+            <ion-icon name="ios-arrow-forward-outline" float-right></ion-icon>
+        </ion-card-header>
+        <ion-card-content class="text-light">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </ion-card-content>
+    </ion-card>
+</ion-content>

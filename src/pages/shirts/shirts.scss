@@ -1,0 +1,92 @@
+page-shirts {
+    .d-flex {
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        p {
+            font-size: .9rem;
+            color: #a8a8a8;
+            padding-left: 4px;
+        }
+    }
+    .text-light {
+        color: #b3b3b3 !important;
+    }
+    .mr-8 {
+        margin-right: 8px;
+    }
+    .icon-box {
+        margin-left: auto;
+        .icon {
+            width: 64px;
+            background: #fff;
+            text-align: center;
+            line-height: 25px;
+            margin: 10px 0 4px 0;
+            border-radius: 5px;
+            margin-left: 5px;
+            font-size: .9rem;
+            color: #8e8e8e;
+            padding: 0 5px;
+            span {
+                padding-left: 8px;
+            }
+        }
+    }
+    .row {
+        padding: 2px 3px !important;
+    }
+    .card {
+        width: 100% !important;
+        margin: 0 !important;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+        border-radius: 5px !important;
+        .card-header {
+            position: relative;
+            padding: 7px !important;
+            padding-bottom: 0px !important;
+            white-space: normal;
+            h5 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #000;
+            }
+            small {
+                font-size: .9rem;
+                display: block;
+            }
+            .img-box {
+                width: 100px;
+                margin: 10px auto;
+            }
+        }
+        .card-content {
+            padding: 0 10px !important;
+            padding-bottom: 6px !important;
+            display: flex;
+            align-items: center;
+            p {
+                font-size: .95rem;
+                margin-right: auto;
+                font-weight: 700;
+                span {
+                    font-weight: 400 !important;
+
+                }
+            }
+            .btn {
+                margin-left: auto;
+                font-size: .9rem;
+                font-weight: 600;
+                width: 45px;
+                text-align: center;
+                border-radius: 3px;
+                line-height: 19px;
+                background: #4dd711;
+            }
+        }
+    }
+    .back-button {
+        display: block;
+    }
+}

@@ -1,0 +1,125 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+   <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title><div style="font-size: 1.1rem !important;">{{itemName}}</div>
+            <div class="icon-box" *ngIf="this.apisProvider.authenticated()">
+                <img src="assets/imgs/ic_my_cart.png" (click)="cartPage()">
+                <ion-badge>{{cartSize}}</ion-badge>
+            </div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+   <!--  <div class="img-section shadow-bottom" text-center>
+        <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+        <div class="tab-btn-box">
+            <div class="tab-btn">
+                <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+            </div>
+            <div class="tab-btn">
+                <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+            </div>
+        </div>
+        <div class="d-flex" style="align-items: stretch;">
+            <span>{{itemDetails.itemName}}</span>
+        </div>
+    </div> -->
+    <div>
+	    <ion-slides pager >
+	        <ion-slide *ngFor="let image of itemDetails.itemsImages">
+	            <img style=" width: 100%;height: 200px;"src="data:image/png;base64,{{image}}"/>
+	        </ion-slide>
+	    </ion-slides>
+	</div>
+	<!-- <div class="about-section1 shadow-bottom bg-white">
+        <h4 ion-text style="font-size: 1.5rem;">{{itemName}}  
+            <ion-badge style="float: right; margin-right: 10px;" color="secondary" class="text-11x">
+             {{ avgRating | number:'1.1' }}
+   			<ion-icon  name="star"></ion-icon>
+          </ion-badge>
+         </h4>
+    </div> -->
+    <div class="about-section shadow-bottom bg-white">
+        <h3>About Product</h3>
+        <p>
+            {{itemDetails.itemDescription}}
+
+        </p>
+    </div>
+    <div class="price-section shadow-bottom bg-white">
+        <div class="d-flex">
+        <p class="d-flex" *ngIf="itemDetails.marketPrice !=0" style="text-decoration-line: line-through;"><i class="fa fa-rupee"></i>{{itemDetails.marketPrice}}</p>
+            <p class="d-flex">
+                {{itemDetails.itemPrice | currency:"₹":0 }} <span>per {{itemDetails.unitofMesure}}
+                </span>
+            </p>
+            <div class="d-flex btn-grup">
+                <div class="btn text-white bg-thime green-shadow " *ngIf="itemDetails.itemQuantity > 1" (click)="decreaseQuality(itemDetails.itemQuantity)">
+                    -
+                </div>
+                <span>{{itemDetails.itemQuantity}} {{itemDetails.unitofMesure}}</span>
+                <div class="btn text-white bg-thime green-shadow " (click)="increaseQuality(itemDetails.itemQuantity)">
+                    +
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="price-section shadow-bottom bg-white">
+        <div class="d-flex">
+            <p class="d-flex">
+                Total Price : <span><b>{{totalVal | currency:"₹":0}}</b>
+                </span>
+            </p>
+           
+        </div>
+    </div>
+    <!-- <div class="price-section shadow-bottom bg-white">
+        <div class="d-flex">
+            <p class="d-flex">
+               <span>Delivery in {{estimatedDelivery}} days</span>
+            </p>
+        </div>
+    </div> -->
+    <h4 ion-text class="fw500">Ratings & Reviews  
+            <ion-badge style="float: right; margin-right: 10px;" color="secondary" class="text-11x">
+   		<ion-icon  name="star"></ion-icon>
+              {{ avgRating | number:'1.1' }}
+          </ion-badge>
+         </h4>
+          <ion-list class="list-full-border">
+      <ion-item *ngFor="let review of itemDetails.itemRatingDto" margin-bottom text-wrap>
+   
+          <h2 class="fw700">
+            <ion-badge color="secondary" class="text-1x">
+   <ion-icon name="star"></ion-icon>
+              {{ review.rating | number:'1.1' }}
+          </ion-badge>
+          <!-- {{ review.comments }} --></h2>
+   
+        <p ion-text>
+          {{ review.comments }}
+        </p>
+         <span ion-text class="author text-11x">By {{ review.userName}}</span> 
+      </ion-item>
+    </ion-list>
+    <!-- <br><br>
+    <button ion-button icon-start block  (click)="buyNow(item,in)" >Buy Now</button>
+    &nbsp; &nbsp; &nbsp;<br><br>
+   &nbsp; <button ion-button full class="bg-thime btn-fisx-bottom btn-text" (click)="addToCart()" style="margin: 0;">ADD TO CART</button> -->
+</ion-content>
+<ion-footer class="bg-thime">
+  <ion-row>
+    <ion-col col-5>
+      <h3 style="color:white;text-align:center; font-size:15px;" (click)="buyNow(item,in)"><span>BUY NOW</span></h3>
+    </ion-col>
+    <ion-col col-2>
+    <div class="verticalLine"></div>
+    </ion-col>
+    <ion-col col-5>
+      <h3 style="color:white;font-size: 15px;" (click)="addToCart()"><span>ADD TO CART</span></h3>
+    </ion-col>
+  </ion-row>
+</ion-footer>

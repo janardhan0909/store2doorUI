@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+     <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Create Account</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="form" padding-left padding-right>
+        <p text-center padding-bottom margin-bottom>Create your Account on Mobiall</p>
+        <ion-list>
+            <ion-item>
+                <ion-label>Phone Number</ion-label>
+                <ion-input type="text" text-right value="+91 903 335 6708"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Full Name</ion-label>
+                <ion-input type="text" text-right value="Jhon Deo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Email Address</ion-label>
+                <ion-input type="text" text-right value="jhondeo8994@mail.com"></ion-input>
+            </ion-item>
+            <div class="d-flex">
+                <ion-item>
+                    <ion-label>Password</ion-label>
+                    <ion-input type="text" text-right value="******"></ion-input>
+                </ion-item>
+                <ion-icon name="ios-eye-outline" class="text-light eye-icon"></ion-icon>
+            </div>
+        </ion-list>
+        <button ion-button full class="bg-thime btn-round btn-text" (click)="homePage()">Continue</button>
+        <p text-center>
+            <small>
+                By Registering ! agree to 
+                <span class="text-sky">
+                    Terms & conditon
+                </span>
+            </small>
+        </p>
+    </div>
+</ion-content>

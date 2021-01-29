@@ -1,0 +1,177 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <img src="assets/imgs/ic_menu.png">
+        </button>
+        <ion-title>
+            My Stores
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+        <div>
+                <ion-row>
+                    <ion-col col-4>
+                        <button ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 5px; "  (click)="addStore()">
+                                <ion-icon ios="ios-home" md="md-home"></ion-icon> Stores
+                        </button>
+                    </ion-col >
+                    <ion-col col-5>
+                        <button ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 5px;" (click)="addCategory()">
+                                <ion-icon ios="ios-basket" md="md-basket"></ion-icon> Categories
+                        </button>
+                    </ion-col >
+                    <ion-col col-3>
+                        <button ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 5px;" (click)="addItem()">
+                                <ion-icon ios="ios-cart" md="md-cart"></ion-icon> Items
+                        </button>
+                    </ion-col>
+                </ion-row>
+        </div><br>
+        <ion-item *ngIf="addStoreFlag">
+                <ion-label>Select Store</ion-label>
+                <ion-select #C (ionChange)="onStoreChange(C.value)" >
+                    <ion-option [value]="0">--Select--</ion-option>
+                    <ion-option *ngFor="let store of stores" [value]="store.id">{{store.storeName}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <div [formGroup]="onStoreForm" *ngIf="addStoreFlag" class="form" padding-left padding-right>
+            <ion-list>
+                    <ion-item>
+                        <ion-input placeholder="Store Name" formControlName="name" type="text" text-left value=""></ion-input>
+                    </ion-item>
+                    <ng-container *ngFor="let validation of validation_messages.name" >
+                            <div class="error-message" *ngIf="onStoreForm.get('name').hasError(validation.type) && (onStoreForm.get('name').dirty || onStoreForm.get('name').touched)">
+                        {{ validation.message }}
+                            </div>
+                    </ng-container>
+                    <ion-item>
+                        <ion-input placeholder="Store Contact Email" type="email" formControlName="email" text-left value=""></ion-input>
+                    </ion-item>
+                    <ng-container *ngFor="let validation of validation_messages.email" >
+                            <div class="error-message" *ngIf="onStoreForm.get('email').hasError(validation.type) && (onStoreForm.get('email').dirty || onStoreForm.get('email').touched)">
+                        {{ validation.message }}
+                            </div>
+                    </ng-container>
+                    <ion-item>
+                        <ion-input placeholder="Store Phone Number" type="text" formControlName="phoneNumber" text-left value=""></ion-input>
+                    </ion-item>
+                    <ng-container *ngFor="let validation of validation_messages.phoneNumber" >
+                            <div class="error-message" *ngIf="onStoreForm.get('phoneNumber').hasError(validation.type) && (onStoreForm.get('phoneNumber').dirty || onStoreForm.get('phoneNumber').touched)">
+                        {{ validation.message }}
+                            </div>
+                    </ng-container>
+                    <ion-item>
+                        <ion-input placeholder="Store Location" formControlName="location" type="text" text-left value=""></ion-input>
+                    </ion-item>
+                    <ng-container *ngFor="let validation of validation_messages.location" >
+                                <div class="error-message" *ngIf="onStoreForm.get('location').hasError(validation.type) && (onStoreForm.get('location').dirty || onStoreForm.get('location').touched)">
+                            {{ validation.message }}
+                                </div>
+                    </ng-container>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Select image</ion-label>
+                        <ion-input type="file" formControlName="storeImages" accept="image/*"  (change)="onFileChangeLargeImage($event)" multiple ></ion-input>
+                   </ion-item>
+                    <div *ngIf="!isImage" class="error-message" >
+		                Atleast one image required.
+		             </div>
+                    	<ion-row *ngIf="store!=undefined">
+                    		 <ion-col col-3 *ngFor="let storeImage of store.storeImages;let idx = index">
+                    		 	<div class="container">
+								  <img src="data:image/png;base64,{{storeImage}}" alt="Snow" height="37px" width="64px">
+								  <button style="background: #ef0f0f;color: white;" (click)="deleteImage(idx)" class="btn">Remove</button>
+								</div>
+                    		 </ion-col>
+                    	</ion-row>
+                    	<div *ngIf="isImageSize" class="error-message" >
+			                The Maximum images should be 4 only.
+			             </div>
+            </ion-list>
+        </div>
+        <ion-list *ngIf="addStoreFlag">
+         <ion-item>
+            <ion-label>Delete Flag</ion-label>
+            <ion-checkbox [(ngModel)]="storeDeleteFlag"></ion-checkbox>
+        </ion-item>
+        </ion-list>
+        <button *ngIf="addStoreFlag" ion-button full class="bg-thime btn-round btn-text" (click)="saveStoreData()" [disabled]="!onStoreForm.valid || !isImage">Continue</button>
+        <ion-item *ngIf="addCategoryFlag">
+                <ion-label>Select Store</ion-label>
+                <ion-select #C (ionChange)="onCategoryStoreChange(C.value)" >
+                    <ion-option *ngFor="let store of stores" [value]="store.id">{{store.storeName}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <button *ngIf="addCategoryFlag && !helper.isEmpty(storeIdForCategory)" ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 10px; "  (click)="openNewCategoryPopup()">
+                <ion-icon ios="ios-add" md="md-add"></ion-icon> Add New Category
+        </button>
+        <ion-content *ngIf="addCategoryFlag && categories.length >0">
+                <div class="bg-white">
+                        <ion-row>
+                            <ion-col col-4 (click)="openCategoryPopup(category)" *ngFor="let category of categories">
+                                <div class="item-box">
+                                    <img class="img-circle" src="data:image/png;base64,{{category.categoryImages[0]}}">
+                                    <p [innerHTML]="category.categoryName"></p>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+            <!--<ion-card *ngFor="let category of categories">
+                    <ion-card-header>
+                        {{category.categoryName}}
+                        <ion-icon name="ios-arrow-forward-outline" (click)="openCategoryPopup(category)" float-right></ion-icon>
+                    </ion-card-header>
+                    <ion-card-content class="text-light">
+                       {{category.categoryDescription}}
+                    </ion-card-content>
+                </ion-card> -->
+        </ion-content>
+        <ion-content *ngIf="addCategoryFlag && categories.length == 0 && !helper.isEmpty(storeIdForCategory)">
+                <ion-card>
+                        <ion-card-header>
+                            ---No Categories Found---
+                        </ion-card-header>
+                    </ion-card>
+        </ion-content>
+        <ion-item *ngIf="addItemFlag">
+                <ion-label>Select Store</ion-label>
+                <ion-select #C (ionChange)="onItemStoreChange(C.value)" >
+                    <ion-option *ngFor="let store of stores" [value]="store.id">{{store.storeName}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <ion-item *ngIf="addItemFlag && !helper.isEmpty(storeIdForItems)">
+                <ion-label>Select Category</ion-label>
+                <ion-select #C (ionChange)="onItemCategoryChange(C.value)" >
+                    <ion-option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</ion-option>
+                </ion-select>
+        </ion-item>
+        <button *ngIf="addItemFlag && !helper.isEmpty(storeIdForItems) && !helper.isEmpty(categoryIdForItems)" ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 10px; "  (click)="openNewItemPopup()">
+                <ion-icon ios="ios-add" md="md-add"></ion-icon> Add New Item
+        </button>
+        <ion-content *ngIf="addItemFlag && items.length >0">
+          <ion-row>
+            <ion-col col-6 *ngFor="let item of items">
+                <ion-card (click)="openItemPopup(item)">
+                        <ion-card-header style="white-space: inherit;">
+                            <h5 style="font-size: 1.2rem;" [innerHTML]="item.itemName"></h5>
+                            <!-- <small class="text-light" [innerHTML]="item.itemDescription"></small> -->
+                            <div >
+                                <img class="img-circle" src="data:image/png;base64,{{item.itemsImages[0]}}">
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <p><span [innerHTML]="item.itemPrice"></span><i class="fa fa-rupee"></i> <small>per {{item.itemQuantity}} kg</small>
+                            </p>
+                        </ion-card-content>
+                </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-content>
+        <ion-content *ngIf="addItemFlag && items.length == 0 && !helper.isEmpty(categoryIdForItems) && !helper.isEmpty(storeIdForItems)">
+                <ion-card>
+                        <ion-card-header>
+                            ---No Items Found---
+                        </ion-card-header>
+                    </ion-card>
+        </ion-content>
+</ion-content>

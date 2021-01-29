@@ -1,0 +1,7 @@
+{
+  "name": "Store2Door",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

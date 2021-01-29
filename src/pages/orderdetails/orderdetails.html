@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+   <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>{{itemName}}
+            <div class="icon-box">
+                <img src="assets/imgs/search.png" (click)="searchPage()">
+                <img src="assets/imgs/ic_my_cart.png" (click)="cartPage()">
+                <ion-badge>{{cartSize}}</ion-badge>
+            </div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+    <div class="img-section shadow-bottom" text-center>
+        <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+        <!--<div class="tab-btn-box">
+            <div class="tab-btn">
+                <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+            </div>
+            <div class="tab-btn">
+                <img src="data:image/png;base64,{{itemDetails.itemsImages}}">
+            </div>
+        </div> -->
+        <div class="d-flex" style="align-items: stretch;">
+            <span>{{itemDetails.itemName}}</span>
+        </div>
+    </div>
+
+    <div class="about-section shadow-bottom bg-white">
+        <h3>About Product</h3>
+        <p>
+            {{itemDetails.itemDescription}}
+
+        </p>
+    </div>
+    <div class="price-section shadow-bottom bg-white">
+        <div class="d-flex">
+            <p class="d-flex">
+                {{itemDetails.itemPrice | currency:"₹":0 }} <span>per {{itemDetails.unitofMesure}}
+                </span>
+            </p>
+            <div class="d-flex btn-grup">
+                <div class="btn text-white bg-thime green-shadow " *ngIf="itemDetails.itemQuantity > 1" (click)="decreaseQuality(itemDetails.itemQuantity)">
+                    -
+                </div>
+                <span>{{itemDetails.itemQuantity}}</span>
+                <div class="btn text-white bg-thime green-shadow " (click)="increaseQuality(itemDetails.itemQuantity)">
+                    +
+                </div>
+            </div>
+        </div>
+    </div>
+    <button ion-button full class="bg-thime btn-fisx-bottom btn-text" (click)="addToCart()" style="margin: 0;">ADD TO CART</button>
+</ion-content>

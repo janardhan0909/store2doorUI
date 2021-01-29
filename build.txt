@@ -1,0 +1,17 @@
+npm install --global --production windows-build-tools
+
+npm i
+
+copy node-sass folder
+
+Build :  ionic cordova build --release android
+
+Prod_Build: ionic cordova build android --prod --release
+
+keytool -genkey -v -keystore soyo-homes-ui.keystore -alias store2door -keyalg RSA -keysize 2048 -validity 10000
+
+Password: 123456
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore store-door-ui.keystore D:\git\store-2-door-ui\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk store2door
+
+zipalign -v 4 D:\git\store-2-door-ui\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk Store2Door.apk

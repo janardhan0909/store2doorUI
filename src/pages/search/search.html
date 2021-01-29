@@ -1,0 +1,45 @@
+<ion-content class="bg-light">
+    <div class="d-flex searchbar-section">
+        <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems(searchTerm)" placeholder="Search Brand of product"></ion-searchbar>
+        <ion-list>
+            <!-- <ion-item *ngFor="let item of items">
+                {{ item }}
+            </ion-item> -->
+        </ion-list>
+        <ion-icon name="md-close" class="close-icon" (click)="dismiss()"></ion-icon>
+    </div>
+
+    <div class="recent-search">
+        <!-- <ion-card>
+             <ion-card-header>
+                Recent Search
+                <span text-right class="right">Clear History</span>
+            </ion-card-header> 
+            <ion-card-content>
+                    <ion-list>
+                            <ion-item *ngFor="let item of categoryItem">
+                                {{item.itemName}}
+                            </ion-item>
+                        </ion-list>
+            </ion-card-content>
+        </ion-card> -->
+    </div> 
+
+     <div class="trending-search">
+        <ion-card>
+            <ion-card-header>
+                Item Search
+            </ion-card-header>
+            <ion-card-content>
+                    <ion-list>
+                        <div *ngFor="let item of categoryItemForDisplay" >
+                            <ion-item (click)="itemdetail(item)">
+                                {{item.itemName}}
+                            </ion-item>
+                            </div>
+                        </ion-list>
+               
+            </ion-card-content>
+        </ion-card>
+    </div>  
+</ion-content>

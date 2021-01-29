@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+   <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Pay now</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content radio-group class="bg-light">
+    <ion-row text-center class="status">
+        <ion-col class="complate">
+            <ion-icon name="ios-checkmark-circle"></ion-icon><span>Sign in</span></ion-col>
+        <ion-col class="processing">
+            <ion-icon name="ios-checkmark-circle"></ion-icon><span>Shipping</span></ion-col>
+        <ion-col class="panding">
+            <ion-icon name="md-radio-button-off"></ion-icon><span>Payment</span></ion-col>
+    </ion-row>
+	<ion-card>
+        <p class="heading">Total Amount to Pay: {{totalAmountToPay| currency:"₹":0}}</p>
+     </ion-card>
+    <ion-card>
+        <p class="heading">PAYMENT METHOD</p>
+     </ion-card>
+
+    <ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Cash on Delivery</ion-label>
+               <ion-radio value="card" (ionSelect)="onPaymentChange('cod')"></ion-radio>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+   	<!--<ion-card>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>Via Razorpay</ion-label>
+                <ion-radio value="net_banking" (ionSelect)="onPaymentChange('razorPay')"></ion-radio>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>-->
+    <div class="spacebar"></div>
+    <div class="btn-padding btn-fisx-bottom">
+        <button *ngIf="!paymentMethod==''" ion-button full class="bg-green btn-round green-shadow btn-text" (click)="placedPage()">CONTINUE
+        </button>
+    </div>
+</ion-content>

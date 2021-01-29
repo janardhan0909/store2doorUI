@@ -1,0 +1,310 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Shop by category
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content class="bg-light">
+    <div class="all-products">
+
+        <div class="tabs-contant">
+            <ion-segment [(ngModel)]="products">
+                <ion-segment-button value="vegetables">
+                    Vegetables & Fruits
+                </ion-segment-button>
+                <ion-segment-button value="bakery">
+                    Bakery & Dairy Products
+                </ion-segment-button>
+                <ion-segment-button value="foodgrains">
+                    Foodgrains, oil & masala
+                </ion-segment-button>
+                <ion-segment-button value="beverages">
+                    Beverages & drinks
+                </ion-segment-button>
+                <ion-segment-button value="beauty">
+                    Beauty & hygiene
+                </ion-segment-button>
+                <ion-segment-button value="household">
+                    Household products
+                </ion-segment-button>
+                <ion-segment-button value="nonveg">
+                    Fish, meet & eggs
+                </ion-segment-button>
+                <ion-segment-button value="gourmet">
+                    Gourmet & world food
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+
+
+
+        <div [ngSwitch]="products" class="all-items">
+            <ion-list *ngSwitchCase="'vegetables'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'bakery'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'foodgrains'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'beverages'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'beauty'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'household'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'nonveg'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'gourmet'">
+                <ion-item (click)="vegetablePage()">
+                    <p class="">Vegetables & Fruits
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Fresh Herbs
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Cuts & Sprouts
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Organic Vegetables
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+                <ion-item (click)="vegetablePage()">
+                    <p>Flowers
+                        <ion-icon name="ios-arrow-forward-outline" text-right class="icon"></ion-icon>
+                    </p>
+                </ion-item>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>

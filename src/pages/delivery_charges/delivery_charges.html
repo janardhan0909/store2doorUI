@@ -1,0 +1,106 @@
+<ion-header class="bg-thime">
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <img src="assets/imgs/ic_menu.png">
+        </button>
+        <ion-title>
+            Delivery Charges
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar no-border-top class="tab-bar">
+        <ion-segment [(ngModel)]="activeTab">
+            <ion-segment-button value="charges">
+                Delivery Charges
+            </ion-segment-button>
+            <ion-segment-button value="coupons">
+               coupons
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+	<div [ngSwitch]="activeTab">
+     	<div *ngSwitchCase="'charges'" class="profile-section">
+    		<div [formGroup]="onDeliveryChargesForm" class="form" padding-left padding-right>
+	        	<ion-list>
+	        		<label>Delivery Amount Limit:</label>
+		            <ion-item>
+		                <ion-input placeholder="Delivery Amount Limit" formControlName="deliveryAmountLimit" type="number" text-left></ion-input>
+		            </ion-item>
+		             <ng-container *ngFor="let validation of validation_messages.deliveryAmountLimit" >
+		                <div class="error-message" *ngIf="onDeliveryChargesForm.get('deliveryAmountLimit').hasError(validation.type) && (onDeliveryChargesForm.get('deliveryAmountLimit').dirty || onDeliveryChargesForm.get('deliveryAmountLimit').touched)">
+		                	{{ validation.message }}
+		               </div>
+		            </ng-container>
+	        		<label>Delivery Charge:</label>
+		            <ion-item>
+		                <ion-input placeholder="Delivery Charge" formControlName="deliveryCharge" type="number" text-left></ion-input>
+		            </ion-item>
+		            <ng-container *ngFor="let validation of validation_messages.deliveryCharge" >
+		                    <div class="error-message" *ngIf="onDeliveryChargesForm.get('deliveryCharge').hasError(validation.type) && (onDeliveryChargesForm.get('deliveryCharge').dirty || onDeliveryChargesForm.get('deliveryCharge').touched)">
+		                {{ validation.message }}
+		                    </div>
+		            </ng-container>
+	        	</ion-list>
+        	</div>
+        	<button ion-button full class="bg-thime btn-round btn-text" (click)="addDeliveryCharge()" [disabled]="!onDeliveryChargesForm.valid">Update</button>
+        </div>
+        <div *ngSwitchCase="'coupons'" class="profile-section">
+    		   <form #couponsForm="ngForm">
+	    		  <div  *ngFor='let coupon of couponsList; let idx = index' class="form" padding-left padding-right>
+		        	<span>Coupon-{{idx+1}}:
+		        		<ion-icon (click)="removecoupon(idx)" style="color:#ef0f0f;float:right" name="trash"></ion-icon>
+		        	</span>
+		        	<ion-list>
+		        	<br>
+		        	<label>Coupon Code:</label>
+			            <ion-item>
+			                <ion-input name="couponCode{{idx}}" #couponCode="ngModel" placeholder="Coupon Code" [(ngModel)]="coupon.couponCode" type="text" text-left required minlength="5"></ion-input>
+			            </ion-item>
+			            <div *ngIf="couponCode.invalid && (couponCode.dirty || couponCode.touched)" class="error-message">
+							<div *ngIf="couponCode.errors.required">Coupon Code is required.</div>
+	  						<div *ngIf="couponCode.errors.minlength">Coupon Code must be at least 4 characters long.</div>
+	  					</div>
+	  					<br>
+	  					<label>Coupon Offer:</label>
+			            <ion-item>
+			                <ion-input name="couponOffer{{idx}}" #couponOffer="ngModel" placeholder="Coupon Offer" [(ngModel)]="coupon.couponOffer" type="number" text-left required></ion-input>
+			            </ion-item>
+			            <div *ngIf="couponOffer.invalid && (couponOffer.dirty || couponOffer.touched)" class="error-message">
+							<div *ngIf="couponOffer.errors.required">Coupon Offer is required.</div>
+	  					</div>
+	  					<label>Maximum Limit:</label>
+			            <ion-item>
+			                <ion-input name="maximumLimit{{idx}}" #maximumLimit="ngModel" placeholder="Maximum Limit" [(ngModel)]="coupon.maximumLimit" type="number" text-left required></ion-input>
+			            </ion-item>
+			            <div *ngIf="maximumLimit.invalid && (maximumLimit.dirty || maximumLimit.touched)" class="error-message">
+							<div *ngIf="maximumLimit.errors.required">Maximum limit Amount is required.</div>
+	  					</div>
+	  					<label>Expiry Date:</label>
+			            <ion-item>
+			                <ion-datetime name="expiryDate{{idx}}" #expiryDate="ngModel" placeholder="Expiry Date" [(ngModel)]="coupon.expiryDate" displayFormat="YYYY-MM-DD" [min]="disableDate" [max]="2050" required></ion-datetime>
+			            </ion-item>
+			            <div *ngIf="expiryDate.invalid && (expiryDate.dirty || expiryDate.touched)" class="error-message">
+							<div *ngIf="expiryDate.errors.required">Expiry Date is required.</div>
+	  					</div>
+	  					<label>Coupon Type:</label>
+	  					<ion-item>
+			                <ion-select name="couponType{{idx}}" #couponType="ngModel" placeholder="Coupon Type" [(ngModel)]="coupon.couponType" required>
+                                <ion-option *ngFor="let coupon of couponTypes" [value]="coupon.key">{{coupon.value}}</ion-option>
+                            </ion-select>
+			            </ion-item>
+			             <div *ngIf="couponType.invalid && (couponType.dirty || couponType.touched)" class="error-message">
+							<div *ngIf="couponType.errors.required">Coupon type is required.</div>
+	  					</div>
+		        	</ion-list>
+		        	<hr>
+	        	</div>
+        	</form>
+        	 <div *ngIf="!couponsForm.valid" class="error-message">
+				Please fill all the required fields.
+	  		</div>
+        	<button style="float: right;height: 10px;" padding ion-button class="bg-thime btn-round btn-text" (click)="addCoupon()">Add Coupon</button><br>
+        	<br><button *ngIf="couponsList.length!=0" ion-button full class="bg-thime btn-round btn-text" (click)="saveCoupons()" [disabled]="!couponsForm.valid">Save Coupons</button>
+        </div>
+     </div>
+</ion-content>

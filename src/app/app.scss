@@ -1,0 +1,302 @@
+//font
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bg-thime {
+    background: #2670c5 !important;
+}
+
+.bg-light {
+    background: #eaeaea !important;
+}
+
+.bg-white {
+    background: #fff !important;
+}
+
+.bg-green {
+    background: #2670c5 !important;
+}
+
+.bg-gray {
+    background: #8f8f8f !important;
+}
+
+//Text Color css
+.text-sky {
+    color: #2670c5 !important;
+}
+
+.text-light {
+    color: #d9d7d7 !important;
+}
+
+.text-red {
+    color: #ff0000 !important;
+}
+
+.back-button,
+.text-white {
+    color: #fff !important;
+}
+
+.toolbar-background {
+    background: #2670c5 !important;
+}
+
+.green-shadow {
+    box-shadow: 0px 6px 7px 0px #2670c5;
+}
+
+.sky-shadow {
+    box-shadow: 0px 6px 7px 0px #b0ddf9;
+}
+
+.gray-shadow {
+    box-shadow: 0px 6px 7px 0px #c6c6c6;
+}
+
+//Botton css
+.btn-round {
+    border-radius: 3px !important;
+}
+
+.btn-text {
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: none;
+    padding: 21px 0;
+}
+
+.btn-fisx-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.button {
+    box-shadow: none !important;
+}
+
+.toolbar-title {
+    color: #fff !important;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 1.3rem !important;
+    display: flex;
+    align-items: center;
+    .icon-box {
+        position: relative;
+        margin-left: auto;
+        img {
+            width: 28px;
+        }
+    }
+}
+
+ion-navbar.toolbar {
+    padding-bottom: 0 !important;
+}
+
+.toolbar-ios ion-title {
+    padding: 0 16px 1px;
+}
+
+.toolbar-title-wp {
+    text-transform: none;
+}
+
+.bar-button-menutoggle ion-icon {
+    color: #fff !important;
+}
+
+.back-button-text {
+    display: none;
+}
+
+.header::after {
+    background: none !important;
+}
+
+ion-header .toolbar-title {
+    span {
+        position: absolute;
+        right: 16px;
+        top: 12px;
+        .icon {
+            font-size: 2rem !important;
+            padding-top: 2px;
+        }
+    }
+    &.toolbar-title-md {
+        span {
+            top: -2px;
+        }
+    }
+}
+
+ion-navbar {
+    button {
+        img {
+            width: 28px;
+        }
+    }
+}
+
+.toolbar-ios {
+    ion-title {
+        padding: 0 16px 0px 52px !important;
+    }
+    .toolbar-title {
+        padding-right: 7px !important;
+    }
+}
+
+.item {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.scroll-content {
+    overflow-y: auto;
+}
+
+.form {
+    padding-top: 2rem;
+    margin: auto;
+    ion-list {
+        margin-bottom: 0px !important;
+        ion-item,
+        .item-inner {
+            padding-left: 0 !important;
+            box-shadow: none !important;
+            .label {
+                color: #b7b7b7 !important;
+                font-weight: 300;
+                font-size: 1.2rem !important;
+                margin: 8px!important;
+            }
+            .text-input {
+                margin: 5px 8px !important;
+                font-size: 1.3rem !important;
+                border: none !important;
+                font-weight: 500 !important;
+            }
+            .text-input-wp {
+                width: 100%;
+                border: none;
+            }
+        }
+        .item-inner {
+            border: 1px solid #e4e4e4 !important;
+            border-radius: 3px !important;
+            padding-left: 16px;
+            margin-bottom: 5px;
+        }
+    }
+    p {
+        font-size: 1.3rem;
+        width: 250px;
+        margin: 10px auto;
+        margin-bottom: 45px;
+        line-height: 1.3;
+    }
+}
+
+.list .item-input:last-child {
+    border-color: transparent !important;
+}
+
+.menu-inner {
+    background: rgba(0, 0, 0, 0.75) !important;
+    .item,
+    .item-inner,
+    .toolbar-background {
+        background: transparent !important;
+        border-color: transparent !important;
+        color: #fff;
+    }
+    ion-content {
+        background: transparent !important;
+    }
+    ion-header {
+        ion-avatar {
+            min-width: 60px;
+            min-height: 60px;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        .toolbar-content {
+            padding-top: 1.3rem;
+        }
+        h2 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 7px;
+            ion-icon {
+                margin-left: auto;
+            }
+        }
+        p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+        }
+        .menu-tabs {
+            img {
+                width: 30px;
+            }
+            background: #2670c5;
+            p {
+                color: #fff;
+                font-size: .95rem;
+                margin: 0;
+            }
+        }
+    }
+    .menu-title {
+        padding: 16px 8px;
+        button {
+            ion-label {
+                display: flex;
+                align-items: center;
+                font-size: 1.3rem;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                img {
+                    width: 34px;
+                    margin-right: 2rem;
+                }
+                span {
+                    small {
+                        display: block;
+                        opacity: .5;
+                        margin-bottom: 5px;
+                        font-size: 95%;
+                    }
+                }
+            }
+        }
+    }
+}
+.img-circle {
+    border-radius: 50%;
+     width: 80px;
+    height: 80px;
+}
+.center-img{
+    height: 15vh;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+  .error-message{
+    color: red;
+    padding: 5px; 
+    width: 100%;
+    height: 30px;
+}

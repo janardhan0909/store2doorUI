@@ -1,0 +1,237 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+   <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>My Order
+            <div class="icon-box">
+                <!-- <img src="assets/imgs/search.png" (click)="searchPage()">
+                <img src="assets/imgs/ic_my_cart.png" (click)="cartPage()"> -->
+            </div>
+        </ion-title>
+    </ion-navbar>
+    <ion-toolbar no-border-top class="tab-bar">
+        <ion-segment [(ngModel)]="account">
+            <ion-segment-button value="pending">
+                Pending Orders
+            </ion-segment-button>
+            <ion-segment-button value="packed">
+                Shipped Order
+            </ion-segment-button>
+            <ion-segment-button value="delivery">
+                Out For Delivery
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-light" >
+    <div [ngSwitch]="account" >
+        <div *ngFor="let orders of myOrderDetails">
+    <div *ngFor="let ordersItems of orders.orderPlacedItems">
+        <div *ngSwitchCase="'pending'" class="profile-section">
+            <ion-card class="border-bottom-none border" style="position: relative;" (click)="orderDetails()" >
+                <ion-card-header>
+                    <p>
+                        <span class="text-light">Ordered ID:</span> {{orders.id}}
+                        <br>
+                        <span class="text-light">Placed on</span> {{orders.orderedTime | date:'EEEE, MMMM d, yyyy h:mm a'}}
+                        <br>
+                        <span class="text-light">Store:</span> {{ordersItems.mrGreenStoreName}}
+                    </p>
+                </ion-card-header>
+                <ion-card-content>
+                <div >
+                    <ion-row >
+                        <ion-col col-7>
+                            <h4>{{ordersItems.categoryItemName}}
+                            </h4>
+                            <small><span class="text-light">Quantity:</span>{{ordersItems.itemQuantity}} {{ordersItems.unitofMesure}}</small>
+                            <p>
+                               Total Payed Amount:{{ordersItems.totalPrice| currency:"₹":0 }}
+                                
+                            </p>
+                            <small><span class="text-light">Tracking Status on</span><br> {{orders.orderedTime | date:'EEEE, MMMM d, yyyy'}}</small>
+                            <!-- <button ion-button full class="bg-green btn-round  btn-text">Reached Hub,New Delhi</button> -->
+                        </ion-col>
+                        <ion-col col-5>
+                            <div class="img-box">
+                                <img src="data:image/png;base64,{{ordersItems.base64Image}}" style="height: 100px;">
+                                <br>
+                                <small class="text-light">via {{orders.paymentType}}</small>
+                            </div>
+                           
+                        </ion-col>
+                        <ion-col>
+                            <b>Delivery Address:</b>
+                                <p>{{ordersItems.deliveryAddress.name}},<br>{{ordersItems.deliveryAddress.streetAddress}},<br>{{ordersItems.deliveryAddress.address}},{{ordersItems.deliveryAddress.pin}}<br>LandMark: {{ordersItems.deliveryAddress.landMark}}<br>{{ordersItems.deliveryAddress.city}},<br>{{ordersItems.deliveryAddress.state}}</p>
+                                </ion-col>
+                    </ion-row>
+                    </div>
+                </ion-card-content>
+                <ion-card-header>
+                        <!-- <p class="left-side text-size">
+                                <b>Change Status Of Order </b>
+                        </p> -->
+                         <p class="right-side text-sky">
+                                <ion-item>
+                                        <ion-label>Select Order Status</ion-label>
+                                        <ion-select [(ngModel)]="ordersItems.itemStatus" (ngModelChange)="statusChanged(ordersItems)">
+                                          <ion-option *ngFor="let status of orderStatus" [value]="status.key">{{status.value}}</ion-option>
+                                          
+                                        </ion-select>
+                                      </ion-item>
+                        </p> 
+                    </ion-card-header>
+            </ion-card>
+<br>
+           
+        </div>
+        </div>
+       <!--  <ion-content *ngIf="orders.length == 0 && helper.isEmpty(orders)">
+                <ion-card>
+                        <ion-card-header>
+                            ---No Categories Found---
+                        </ion-card-header>
+                    </ion-card>
+        </ion-content> -->
+        </div>
+
+        <div *ngFor="let orders of myOrderDetails">
+                <div *ngFor="let ordersItems of orders.shippedItmes">
+                    <div *ngSwitchCase="'packed'" class="profile-section">
+                        <ion-card class="border-bottom-none border" style="position: relative;" (click)="orderDetails()"  >
+                            <ion-card-header>
+                                <p class="left-side">
+                                    <span class="text-light">Ordered ID:</span> {{orders.id}}
+                                    <br>
+                                    <span class="text-light">Placed on</span> {{orders.orderedTime | date:'short'}}
+                                    <br>
+                                   <!--  <span class="text-light">Total Amount Paid:</span> {{orders.totalPrice}} -->
+                                </p>
+                                 <p class="right-side text-sky">
+                                   <b>{{ordersItems.mrGreenStoreName}}</b>
+                                </p> 
+                            </ion-card-header>
+                            <ion-card-content>
+                            <div >
+                                <ion-row >
+                                    <ion-col col-7>
+                                        <h4>{{ordersItems.categoryItemName}}
+                                        </h4>
+                                        <small><span class="text-light">Quantity:</span>{{ordersItems.itemQuantity}}</small>
+                                        <p>
+                                           Total Payed Item Amount:{{ordersItems.totalPrice| currency:"₹":0 }}
+                                            
+                                        </p>
+                                        <small><span class="text-light">Tracking Status on</span><br> {{orders.orderedTime | date:'short'}}</small>
+                                        <!-- <button ion-button full class="bg-green btn-round  btn-text">Reached Hub,New Delhi</button> -->
+                                    </ion-col>
+                                    <ion-col col-5>
+                                        <div class="img-box">
+                                            <img src="data:image/png;base64,{{ordersItems.base64Image}}" style="height: 100px;">
+                                            <br>
+                                            <small class="text-light">via {{orders.paymentType}}</small>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col col-7>
+                                        <b>Delivery Address:</b>
+                                            <p>{{ordersItems.deliveryAddress.name}},<br>{{ordersItems.deliveryAddress.streetAddress}},<br>{{ordersItems.deliveryAddress.address}},{{ordersItems.deliveryAddress.pin}}<br>{{ordersItems.deliveryAddress.city}},<br>{{ordersItems.deliveryAddress.state}}</p>
+                                            </ion-col>
+                                </ion-row>
+                                </div>
+                            </ion-card-content>
+                            <ion-card-header>
+                                    <!-- <p class="left-side text-size">
+                                            <b>Change Status Of Order </b>
+                                    </p> -->
+                                     <p class="right-side text-sky">
+                                            <ion-item>
+                                                    <ion-label>Select Order Status</ion-label>
+                                                    <ion-select [(ngModel)]="ordersItems.itemStatus" (ngModelChange)="statusChanged(ordersItems)">
+                                                      <ion-option *ngFor="let status of orderStatus" [value]="status.key">{{status.value}}</ion-option>
+                                                      
+                                                    </ion-select>
+                                                  </ion-item>
+                                    </p> 
+                                </ion-card-header>
+                                
+                        </ion-card>
+            <br>
+                       
+                    </div>
+                  <!--   <div *ngIf="ordersItems.length != 0;else data_there" >Data is not there</div>
+                    <ng-template #data_there>Data is not there</ng-template> -->
+                    </div>
+                    
+                    </div>
+              
+                    <div *ngFor="let orders of myOrderDetails">
+                            <div *ngFor="let ordersItems of orders.outForDelieryItems">
+                                <div *ngSwitchCase="'delivery'" class="profile-section">
+                                    <ion-card class="border-bottom-none border" style="position: relative;" (click)="orderDetails()">
+                                        <ion-card-header>
+                                            <p class="left-side">
+                                                <span class="text-light">Ordered ID:</span> {{orders.id}}
+                                                <br>
+                                                <span class="text-light">Placed on</span> {{orders.orderedTime | date:'short'}}
+                                                <br>
+                                               <!--  <span class="text-light">Total Amount Paid:</span> {{orders.totalPrice}} -->
+                                            </p>
+                                             <p class="right-side text-sky">
+                                               <b>{{ordersItems.mrGreenStoreName}}</b>
+                                            </p> 
+                                        </ion-card-header>
+                                        <ion-card-content>
+                                        <div >
+                                            <ion-row >
+                                                <ion-col col-7>
+                                                    <h4>{{ordersItems.categoryItemName}}
+                                                    </h4>
+                                                    <small><span class="text-light">Quantity:</span>{{ordersItems.itemQuantity}}</small>
+                                                    <p>
+                                                       Total Payed Item Amount:{{ordersItems.totalPrice| currency:"₹":0 }}
+                                                        
+                                                    </p>
+                                                    <small><span class="text-light">Tracking Status on</span><br> {{orders.orderedTime | date:'short'}}</small>
+                                                    <!-- <button ion-button full class="bg-green btn-round  btn-text">Reached Hub,New Delhi</button> -->
+                                                </ion-col>
+                                                <ion-col col-5>
+                                                    <div class="img-box">
+                                                        <img src="data:image/png;base64,{{ordersItems.base64Image}}" style="height: 100px;">
+                                                        <br>
+                                                        <small class="text-light">via {{orders.paymentType}}</small>
+                                                    </div>
+                                                </ion-col>
+                                                <ion-col col-7>
+                                                    <b>Delivery Address:</b>
+                                                        <p>{{ordersItems.deliveryAddress.name}},<br>{{ordersItems.deliveryAddress.streetAddress}},<br>{{ordersItems.deliveryAddress.address}},{{ordersItems.deliveryAddress.pin}}<br>{{ordersItems.deliveryAddress.city}},<br>{{ordersItems.deliveryAddress.state}}</p>
+                                                        </ion-col>
+                                            </ion-row>
+                                            </div>
+                                        </ion-card-content>
+                                        <ion-card-header>
+                                                <!-- <p class="left-side text-size">
+                                                        <b>Change Status Of Order </b>
+                                                </p> -->
+                                                 <p class="right-side text-sky">
+                                                        <ion-item>
+                                                                <ion-label>Select Order Status</ion-label>
+                                                                <ion-select [(ngModel)]="ordersItems.itemStatus" (ngModelChange)="statusChanged(ordersItems)">
+                                                                  <ion-option *ngFor="let status of orderStatus" [value]="status.key">{{status.value}}</ion-option>
+                                                                  
+                                                                </ion-select>
+                                                              </ion-item>
+                                                </p> 
+                                            </ion-card-header>
+                                    </ion-card>
+                        <br>
+                                   
+                                </div>
+                                <!-- <div *ngIf="ordersItems.length != 0;else data_there" >Data is not there</div>
+                    <ng-template #data_there>Data is not there</ng-template> -->
+                                </div>
+                               
+                                </div>
+    </div>
+</ion-content>

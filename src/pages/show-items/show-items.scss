@@ -1,0 +1,30 @@
+page-phonenumber {
+    .button-full {
+        margin-top: 15px;
+    }
+   .card-md h5{
+    margin: 2px 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #222;
+}
+}
+.header {
+    .toolbar-title {
+        .icon-box {
+            ion-badge {
+                background-color: #ff0000;
+                position: absolute;
+                text-align: center;
+                right: -4px;
+                top: 1px;
+                font-size: 1rem;
+                font-weight: 100;
+                border-radius: 50%;
+                width: 14px;
+                line-height: 14px;
+                padding: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "247409921630",
+    "firebase_url": "https://store2door-98497.firebaseio.com",
+    "project_id": "store2door-98497",
+    "storage_bucket": "store2door-98497.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247409921630:android:f9bc01001bb9cd669d6ecf",
+        "android_client_info": {
+          "package_name": "com.app.store2door"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247409921630-lgsd4l9nigsbdv579852kbvrd186on7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6k2tkpUPFLBVhpeBGUyGyWWSjrJ8WEdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247409921630-lgsd4l9nigsbdv579852kbvrd186on7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

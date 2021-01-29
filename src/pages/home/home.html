@@ -1,0 +1,77 @@
+<ion-header class="bg-thime">
+    <ion-navbar>
+        <button ion-button menuToggle style="display: block !important;">
+           <img src="assets/imgs/ic_menu.png">
+        </button>
+        <ion-title>Store2Door
+            <div class="icon-box" *ngIf="this.apisProvider.authenticated()">
+                <img src="assets/imgs/ic_my_cart.png" (click)="cartPage()">
+                <ion-badge>{{cartItemSize}}</ion-badge>
+            </div>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+<ion-slides pager *ngIf="!showItems" >
+        <ion-slide>
+            <img src="assets/imgs/welcome.png" class="slide-image img-responsive" />
+        </ion-slide>
+    </ion-slides><br>
+    <div *ngIf="!showItems">
+     <ion-row *ngFor="let coupon of this.couponsList">
+	    <ion-card>
+	       <ion-card-header>
+	            <ion-row>
+	            	<ion-col col-8>
+	            		<p style="font-family: 'Rokkitt', serif;">FLAT {{coupon.couponOffer}}% OFF
+	            	 		<span style="font-family: 'Rokkitt', serif;" *ngIf="coupon.couponType===helper.userFirstOrder">on First Order</span>
+	            	 		<span style="font-family: 'Rokkitt', serif;" *ngIf="coupon.couponType!=helper.userFirstOrder">on All Orders</span>
+	            	 	</p>
+	            	 	<p style="font-size: 9px;"><span style="font-family: 'Rokkitt', serif;">use COUPON CODE: </span><span style="font-family: 'Staatliches', cursive;"><strong>{{coupon.couponCode}}</strong></span></p>
+	            		<p style="font-size: 9px; font-family: 'Rokkitt', serif;">DISCOUNT UP TO {{coupon.maximumLimit  | currency:"₹":0}}</p>
+	            	</ion-col>
+	            	<ion-col col-4>
+	            		<img src="assets/imgs/special-offer.jpg" class="slide-image img-responsive" />
+	            	</ion-col>
+	           </ion-row>
+	       </ion-card-header>
+	   </ion-card>
+    </ion-row>
+    </div>
+     <h4 *ngIf="!showItems" text-center >Shop by Store</h4>
+    
+		<ion-row *ngIf="stores.length > 0 && !showItems">
+            <ion-col style="padding-left:12px" col-4 (click)="onStoreSelect(store)" *ngFor="let store of stores;let in = index;">
+	                <div class="item-box">
+	                    <img class ="img-circle" src="data:image/png;base64,{{store.storeImages[0]}}">
+	                    <h4 [innerHTML]="store.storeName"></h4>
+	                </div>
+	            </ion-col>
+          </ion-row>
+ 	<div *ngIf="showItems">
+ 	<ion-item>
+                <ion-label>Change Store</ion-label>
+                <ion-select #C (ionChange)="onStoreChange(C.value)" [(ngModel)]="selectedStore">
+                    <ion-option *ngFor="let store of stores" [value]="store.id">{{store.storeName}}</ion-option>
+                </ion-select>
+    </ion-item>
+    <ion-slides pager >
+        <ion-slide *ngFor="let storeImage of storeImages">
+            <img src="data:image/png;base64,{{storeImage}}" class="slide-image img-responsive" />
+        </ion-slide>
+    </ion-slides>
+
+    <h4 text-center >Shop by category</h4>
+
+    <div class="bg-white">
+        <ion-row>
+            <ion-col style="padding-left:12px" col-4 (click)="categoryPage(catgory)" *ngFor="let catgory of categories">
+                <div class="item-box">
+                    <img class ="img-circle" src="data:image/png;base64,{{catgory.categoryImages[0]}}">
+                    <h4 [innerHTML]="catgory.categoryName"></h4>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+    </div>
+</ion-content>

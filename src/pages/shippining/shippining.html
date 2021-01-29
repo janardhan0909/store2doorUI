@@ -1,0 +1,125 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+    <ion-icon class="menu-icon"><img src="assets/imgs/ic_menu.png"></ion-icon>
+    </button>
+        <ion-title>Confirm order</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-light">
+	<div style="text-align: center;margin-top: 160px;" *ngIf="orderdedDetails.length==0">
+		<ion-icon style="font-size: 8.2em;" ios="ios-cart" md="md-cart"></ion-icon>
+		<h5>Your Shopping Cart is empty</h5>
+	</div>
+    <div class="address-section" *ngIf="orderdedDetails.length!=0">
+        <ion-row text-center class="status">
+            <ion-col class="complate">
+                <ion-icon name="ios-checkmark-circle"></ion-icon><span>Sign in</span></ion-col>
+            <ion-col class="processing">
+                <ion-icon name="md-radio-button-off"></ion-icon><span>Shipping</span></ion-col>
+            <ion-col class="panding">
+                <ion-icon name="ion-record"></ion-icon><span>Payment</span></ion-col>
+        </ion-row>
+        <ion-card *ngIf="orderdedDetails.length!=0">
+            <ion-card-header>
+                <p>
+                    YOUR DELIVERY ADDRESS<span class="text-sky" (click)="addressPopup()">Add Address<ion-icon name="ios-arrow-forward" class="icon"></ion-icon></span></p>
+            </ion-card-header>
+            <ion-card-content>
+            	<ion-list radio-group [(ngModel)]="selectedAddress">
+				  <ion-item *ngFor="let address of addressList;let idx = index">
+				  <ion-radio value={{idx}}></ion-radio>
+				    <ion-label>
+					    <div class="addres-detail">
+		                    <h3>
+		                        <ion-icon name="ios-pin-outline" class="icon-position"></ion-icon>{{address.name}}
+		                    </h3>
+		                    <p>{{address.address}},{{address.streetAddress}}<br>LandMark: {{address.landMark}}<br> {{address.pin}}.<br>{{address.state}}<br>{{address.city}}</p>
+		                    <p>{{address.contNo}}</p>
+	                	</div>
+                	</ion-label>
+				  </ion-item>
+				</ion-list>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div class="your-items" *ngFor="let orders of orderdedDetails;">
+        <ion-card>
+            <ion-card-header>
+                <p>YOUR ITEMS</p>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col col-4>
+                        <div class="img-circle">
+                            <img src="data:image/png;base64,{{orders.base64Image}}" style="height: 100px;">
+                        </div>
+                    </ion-col>
+                    <ion-col col-8>
+                        <h4>{{orders.categoryItemName}}<br></h4>
+                        <p class="d-flex">
+                            {{orders.totalPrice}}<span class="d-flex">per {{orders.unitofMesure}}
+                                <ion-icon name="md-arrow-dropdown"></ion-icon>
+                            </span>
+                        </p>
+                        <div class="price ">
+                            <div class="d-flex">
+                                <p class="text-red" (click)="removeItem(orders);">
+                                    Remove
+                                </p>
+                                <div class="d-flex btn-grup" >
+                                     <div class="btn text-white bg-thime green-shadow " *ngIf="orders.itemQuantity > 1" (click)="decreaseQuality(orders)">
+                                        -
+                                    </div> 
+                                    <b><span>{{orders.itemQuantity}} {{orders.unitofMesure}}</span></b>
+                                    <div class="btn text-white bg-thime green-shadow "(click)="increaseQuality(orders)">
+                                        +
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngIf="orderdedDetails.length!=0">
+   	 <ion-card padding>
+       <p><span>Delivery by <strong>{{estimatedDeliveryDate | date: 'd MMMM, EEEE, h:mm a'}}</strong></span></p>
+     </ion-card>
+      <ion-card padding *ngIf="couponsList.length">
+      	<label>Apply Promo Code</label>
+      	<ion-row>
+      		<ion-col col-9><ion-input type="text" placeholder="Type Promo code" [(ngModel)]="couponCode"></ion-input></ion-col>
+      		<ion-col col-3 style="padding-top: 17px;"><span style="color: blue;" (click)="applyCoupon()">Apply</span></ion-col>
+      	</ion-row>
+       	<hr>
+       	<label *ngIf="isValidCoupon" style="color: #39c526;">Promo Code Applied Successfully</label>
+       	<label *ngIf="isInvalidCoupon && couponCode != ''" style="color: #ff0000;">Invalid Promo Code</label>
+        <label *ngIf="isNotFirstOrder" style="color: #ff0000;">This Promo code Applicable for only First order</label>
+        <label *ngIf="isDateExpired" style="color: #ff0000;">This Promo code has Expired</label>
+      </ion-card>
+     <ion-card>
+            <ion-card-header>
+                <p>Order price<span text-right>{{totalVal| currency:"₹":0}}</span></p>
+                <p *ngIf="isValidCoupon">Promo Code Discount <span text-right>- {{couponDicount | currency:"₹":0}}</span></p>
+                <p *ngIf="totalVal<deliveryCharges.deliveryAmountLimit">Delivery Charges<span text-right>+ {{deliveryCharges.deliveryCharge | currency:"₹":0}}</span></p>
+            </ion-card-header>
+        </ion-card>
+        <ion-card *ngIf="totalVal<deliveryCharges.deliveryAmountLimit">
+            <ion-card-header>
+            	 <p>Total Order price<span text-right>{{totalVal+deliveryCharges.deliveryCharge-couponDicount| currency:"₹":0}}</span></p>
+            </ion-card-header>
+        </ion-card>
+        <ion-card *ngIf="totalVal>deliveryCharges.deliveryAmountLimit">
+            <ion-card-header>
+            	 <p>Total Order price<span text-right>{{totalVal-couponDicount| currency:"₹":0}}</span></p>
+            </ion-card-header>
+        </ion-card>
+     </div>
+        <br><br><br>
+</ion-content>
+<ion-footer class="bg-thime">
+ <button ion-button full class="bg-green btn-round green-shadow btn-text" *ngIf="selectedAddress && addressList != '' && orderdedDetails.length!=0" (click)="paymentPage()">CONTINUE</button>
+</ion-footer>

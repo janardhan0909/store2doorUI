@@ -1,0 +1,68 @@
+page-category {
+    .bg-light {
+        background: #fbfbfb !important;
+    }
+    .all-products {
+        margin-top: 1rem;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+        display: flex;
+        background: #fff;
+        align-items: stretch;
+        .segment {
+            display: block;
+            width: 40vw;
+            .segment-button {
+                width: 100%;
+                text-align: left;
+                color: #9b9b9b;
+                border: none !important;
+                background: #fbfbfb;
+                position: relative;
+                z-index: 1;
+                opacity: 1;
+                line-height: normal;
+                white-space: normal;
+                text-transform: none;
+                font-size: 1.2rem;
+                font-weight: 500;
+                padding: 15px 20px;
+                height: auto;
+                &.segment-activated {
+                    color: #39c526;
+                    font-weight: 600 !important;
+                    background: #fff;
+                    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15) !important;
+                    z-index: 999;
+                }
+            }
+        }
+    }
+    .all-items {
+        width: 100%;
+        margin-left: auto;
+        box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 99;
+        .list {
+            margin-top: 0 !important;
+        }
+        p {
+            font-size: 1.3rem;
+            position: relative;
+            color: #5b5b5b;
+            font-weight: 500;
+            padding: 10px 4px 0px;
+            ion-icon {
+                position: absolute;
+                right: 0;
+                color: #e7e7e7 !important;
+                font-size: 18px;
+            }
+        }
+        .item-block {
+            .item-inner {
+                border: none !important;
+            }
+        }
+    }
+}

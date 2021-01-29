@@ -1,0 +1,95 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-list>
+                <ion-item>
+                    <ion-avatar item-start>
+                        <img src="assets/imgs/logo.png">
+                    </ion-avatar>
+                    <h2>{{loggedInUserName}}
+                        <!-- ion-icon name="ios-arrow-forward"></ion-icon> -->
+                    </h2>
+                </ion-item>
+                <div class="menu-title" style="padding: 0;">
+                    <button ion-item menuClose (click)="locationPage()">
+                    <img src=" assets/imgs/ic_my_addresses.png" style="margin-right: 1rem;">
+                        <span><small>Your Location</small>
+                        Bangalore, Karnataka</span>
+                </button>
+                </div>
+            </ion-list>
+        </ion-toolbar>
+        <div  class="menu-tabs" padding text-center>
+            <ion-row *ngIf="isAuthenticated">
+                <ion-col col-4 menuClose (click)="myorder_1Page()">
+                    <img src="assets/imgs/ic_my_orders-2.png">
+                    <p>My Order</p>
+                </ion-col>
+                <ion-col col-4 menuClose (click)="my_accountPage('card')">
+                    <img src="assets/imgs/ic_my_cards-2.png">
+                    <p>My Card</p>
+                </ion-col>
+                <ion-col col-4 menuClose (click)="my_accountPage('address')">
+                    <img src="assets/imgs/ic_my_addresses-2.png">
+                    <p>My Addresses</p>
+                </ion-col> 
+            </ion-row>
+            <ion-row *ngIf="!isAuthenticated">
+                <ion-col menuClose (click)="loginPage()">
+                    <p style="font-size: 13px;">Login/Signup</p>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-header>
+
+    <ion-content>
+        <div class="menu-title">
+            <ion-list>
+                <button ion-item menuClose (click)="homePage()">
+                    <img src=" assets/imgs/ic_home.png ">
+                        Stores
+                </button>
+                <button ion-item menuClose (click)="myStotesPage()" *ngIf="(isAdmin || isSuperAdmin) && isAuthenticated">
+                        <img src="assets/imgs/ic_my_stores.png ">
+                            My Stores
+                </button>
+               <!--  <button ion-item menuClose (click)="categoryPage()">
+                    <img src="assets/imgs/ic_categories.png ">
+                     Shop by Caategory                 
+                </button> -->
+                <button ion-item menuClose (click)="myorder_2Page()" *ngIf="(isAdmin || isSuperAdmin) && isAuthenticated">
+                        <img src="assets/imgs/ic_basket.png" class="img-transfer">
+                            Orders Received
+                </button>
+                <button ion-item menuClose (click)="deliveryChargesPage()" *ngIf="(isAdmin || isSuperAdmin) && isAuthenticated">
+                        <img src="assets/imgs/ic_my_orders-2.png" class="img-transfer">
+                            Charges / Coupons
+                </button>
+                <button ion-item menuClose (click)="my_accountPage('profile')" *ngIf="isAuthenticated">
+                    <img src="assets/imgs/ic_my_account.png ">
+                        Settings
+                </button>
+               <!--  <button ion-item menuClose (click)="helpPage()">
+                    <img src="assets/imgs/ic_help.png ">
+                        Help Center
+                </button>
+                <button ion-item menuClose (click)="ourMissionPage()">
+                    <img src="assets/imgs/ic_categories.png">
+                        Our Mission
+                </button>-->
+                <button ion-item menuClose (click)="aboutPage()">
+                    <img src="assets/imgs/ic_help.png">
+                    About us
+                </button>
+                <button ion-item menuClose (click)="phonenumberPage()" *ngIf="isAuthenticated">
+                    <img src="assets/imgs/ic_logout.png ">
+                        Logout
+                </button>
+            </ion-list>
+        </div>
+    </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage " #content swipeBackEnabled="false "></ion-nav>

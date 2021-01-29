@@ -1,0 +1,94 @@
+<ion-header>
+        <ion-navbar>
+            <button ion-button style="display: block !important;" color="secondary" 
+               (click)="dismiss()"><ion-icon ios="ios-close" md="md-close"></ion-icon>
+            </button>
+        </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div [formGroup]="onItemsForm" class="form" padding-left padding-right>
+        <ion-list>
+            <ion-item>
+                <ion-input placeholder="Item Name" formControlName="name" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                    <div class="error-message" *ngIf="onItemsForm.get('name').hasError(validation.type) && (onItemsForm.get('name').dirty || onItemsForm.get('name').touched)">
+                {{ validation.message }}
+                    </div>
+            </ng-container>
+            <ion-item>
+                <ion-textarea placeholder="Description (optional)" formControlName="description" text-left value="" rows="4" cols="50"></ion-textarea>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.password" >
+                    <div class="error-message" *ngIf="onItemsForm.get('description').hasError(validation.type) && (onItemsForm.get('description').dirty || onItemsForm.get('description').touched)">
+                {{ validation.message }}
+                    </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>Store Price </ion-label>
+                <ion-input placeholder="" formControlName="price" type="number" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.password" >
+                <div class="error-message" *ngIf="onItemsForm.get('price').hasError(validation.type) && (onItemsForm.get('price').dirty || onItemsForm.get('price').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                    <ion-label>Quantity</ion-label>
+                    <ion-input placeholder="" formControlName="quantity" type="number" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.quantity" >
+                <div class="error-message" *ngIf="onItemsForm.get('quantity').hasError(validation.type) && (onItemsForm.get('quantity').dirty || onItemsForm.get('quantity').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>Unit Of Mesurment</ion-label>
+                <ion-input placeholder="" formControlName="unitofMesure" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.unitofMesure" >
+                <div class="error-message" *ngIf="onItemsForm.get('unitofMesure').hasError(validation.type) && (onItemsForm.get('unitofMesure').dirty || onItemsForm.get('unitofMesure').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>Market Price </ion-label>
+                <ion-input placeholder="" formControlName="marketPrice" type="number" text-left value=""></ion-input>
+            </ion-item>
+            <ion-item>
+                    <ion-label>Display Order</ion-label>
+                    <ion-input placeholder="" formControlName="displayOrder" type="number" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.displayOrder" >
+                <div class="error-message" *ngIf="onItemsForm.get('displayOrder').hasError(validation.type) && (onItemsForm.get('displayOrder').dirty || onItemsForm.get('displayOrder').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label color="primary" stacked>Select image</ion-label>
+                <ion-input type="file" formControlName="itemImages" accept="image/*" (change)="onSelectItemImage($event)" multiple ></ion-input>
+           </ion-item>
+             <div *ngIf="!isImage" class="error-message" >
+                Atleast one image required.
+             </div>
+            <ion-row>
+              <ion-col col-3 *ngFor="let item of selectedStoreCategoryItem.itemsImages;let idx = index">
+              	<div class="container">
+				  <img src="data:image/png;base64,{{item}}" alt="Snow" height="37px" width="64px">
+				  <button style="background: #ef0f0f;color: white;" (click)="deleteImage(idx)" class="btn">Remove</button>
+				</div>
+              </ion-col>
+            </ion-row>
+             <div *ngIf="isImageSize" class="error-message" >
+                The Maximum images should be 4 only.
+             </div>
+        </ion-list>
+        </div>
+    <ion-list>
+            <ion-item>
+               <ion-label>Delete Flag</ion-label>
+               <ion-checkbox [(ngModel)]="itemDeleteFlag"></ion-checkbox>
+           </ion-item>
+    </ion-list>
+    <button ion-button full class="bg-thime btn-round btn-text" (click)="addItem()" [disabled]="!onItemsForm.valid || !isImage">Add</button>
+</ion-content>

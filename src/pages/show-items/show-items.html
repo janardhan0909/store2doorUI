@@ -1,0 +1,43 @@
+<ion-header class="bg-thime">
+        <ion-navbar>
+        	 <button ion-button menuToggle>
+		     <img src="assets/imgs/ic_menu.png">
+		    </button>
+            <ion-title>{{selectedCategoryName}}
+                    <div class="icon-box">
+                            <img src="assets/imgs/search.png" (click)="searchPage()">
+                            <img *ngIf="this.apisProvider.authenticated()"src="assets/imgs/ic_my_cart.png" (click)="cartPage()">
+                            <ion-badge *ngIf="this.apisProvider.authenticated()">{{cartSize}}</ion-badge>
+                    </div>
+            </ion-title>
+        </ion-navbar>
+</ion-header>
+<ion-content>
+          <ion-row *ngIf="items.length > 0">
+            <ion-col col-6 *ngFor="let item of items;let in = index;">
+                <ion-card>
+                        <ion-card-header style="white-space: inherit;" (click)="itemdetailPage(item)">
+                            <h5 style="font-size: 1.2rem;" [innerHTML]="item.itemName"></h5>
+                           <!--  <small class="text-light" [innerHTML]="item.itemDescription"></small> -->
+                            <div class="item-box">
+                                <img style="border-radius: 50%;" src="data:image/png;base64,{{item.itemsImages[0]}}" style="height: 100px;">
+                            </div>
+                        </ion-card-header>
+                        <ion-card-content>
+                        	<p> <span *ngIf="item.marketPrice !=0" style="text-decoration-line: line-through;"><i class="fa fa-rupee"></i>{{item.marketPrice}}</span>
+                            <i class="fa fa-rupee"></i><span [innerHTML]="item.itemPrice">&nbsp;</span>&nbsp;<small>per {{item.itemQuantity}} {{item.unitofMesure}}</small>
+                            </p>
+                            <button ion-button icon-start block color="secondary" style="font-size: 10px; height:30px; border-radius: 5px;" (click)="addToCart(item,in)"> ADD TO CART
+                            </button>
+                        </ion-card-content>
+                </ion-card>
+            </ion-col>
+          </ion-row>
+        <ion-content *ngIf="items.length == 0">
+                <ion-card>
+                        <ion-card-header>
+                            ---No Items Found---
+                        </ion-card-header>
+                    </ion-card>
+        </ion-content>
+</ion-content>

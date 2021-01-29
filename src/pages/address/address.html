@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Address
+            <span float-right> 
+                  <ion-icon name="md-close" class="close-icon" (click)="dismiss()"></ion-icon>          
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div [formGroup]="onAddressForm" class="form" padding-left padding-right>
+        <ion-list>
+            <ion-item>
+                <ion-label>Name:</ion-label>
+                <ion-input  formControlName="name" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('name').hasError(validation.type) && (onAddressForm.get('name').dirty || onAddressForm.get('name').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>Address:</ion-label>
+                <ion-input  formControlName="address" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('address').hasError(validation.type) && (onAddressForm.get('address').dirty || onAddressForm.get('address').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>StreetAddress:</ion-label>
+                <ion-input  formControlName="streetAddress" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('streetAddress').hasError(validation.type) && (onAddressForm.get('streetAddress').dirty || onAddressForm.get('streetAddress').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>Pincode:</ion-label>
+                <ion-input  formControlName="pin" type="number" text-left value="" (ionChange)="onPincodeChange()"></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.pin" >
+                        <div class="error-message" *ngIf="onAddressForm.get('pin').hasError(validation.type) && (onAddressForm.get('pin').dirty || onAddressForm.get('pin').touched)">
+                    {{ validation.message }}
+                        </div>
+                </ng-container>
+                <div class="error-message" *ngIf="isInvalidPincode">
+                    	Items not Deliverable to this Pin code.
+                 </div>
+            <ion-item>
+                <ion-label>City:</ion-label>
+                <ion-input  formControlName="city" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('city').hasError(validation.type) && (onAddressForm.get('city').dirty || onAddressForm.get('city').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>State:</ion-label>
+                <ion-input  formControlName="state" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('state').hasError(validation.type) && (onAddressForm.get('state').dirty || onAddressForm.get('state').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+             <ion-item>
+                <ion-label>LandMark:</ion-label>
+                <ion-input  formControlName="landMark" type="text" text-left value=""></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.name" >
+                <div class="error-message" *ngIf="onAddressForm.get('streetAddress').hasError(validation.type) && (onAddressForm.get('streetAddress').dirty || onAddressForm.get('streetAddress').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+            <ion-item>
+                <ion-label>ContactNo:</ion-label>
+                <ion-input  formControlName="contNo" type="text" text-left></ion-input>
+            </ion-item>
+             <ng-container *ngFor="let validation of validation_messages.phoneNumber" >
+                        <div class="error-message" *ngIf="onAddressForm.get('contNo').hasError(validation.type) && (onAddressForm.get('contNo').dirty || onAddressForm.get('contNo').touched)">
+                    {{ validation.message }}
+                        </div>
+                </ng-container>
+        </ion-list>
+        </div>
+    <button ion-button full class="bg-thime btn-round btn-text" (click)="saveAddress()" [disabled]="!onAddressForm.valid">Add</button>
+</ion-content>
+

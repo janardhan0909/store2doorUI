@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <img src="assets/imgs/ic_menu.png">
+    </button>
+        <ion-title>Rate
+            <span float-right> 
+                  <ion-icon name="md-close" class="close-icon" (click)="dismiss()"></ion-icon>          
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+        
+    <ion-col col-9> 
+        <ion-item>
+        <b>Please rate the item!</b>
+        <p>
+        <small class="text-light">Your rating will imapct the store's overall rating <br>and will help others make better choices.</small>
+        </p>
+         <rating [(ngModel)]="rate"
+         readOnly="false" max="5" 
+         emptyStarIconName="star-outline"
+         halfStarIconName="star-half"
+         starIconName="star" 
+         nullable="false"
+         (ngModelChange)="onModelChange($event)">
+         </rating>
+         </ion-item>
+         
+       <div *ngIf="isAddReview">
+            <ion-col col-8>
+            <ion-item>
+                <ion-input type="text" class="review" [(ngModel)]="comments" placeholder="comments" maxlength=200></ion-input>
+               </ion-item>
+            </ion-col>
+            <ion-col col-2>
+            <button ion-button calss="btn1" color="primary" (click)="saveReviews()">Submit</button>
+            </ion-col>
+         </div>  
+        </ion-col> 
+</ion-content>
+

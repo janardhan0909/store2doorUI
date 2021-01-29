@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">247409921630-lgsd4l9nigsbdv579852kbvrd186on7c.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://store2door-98497.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">247409921630</string>
+    <string name="google_api_key" translatable="false">AIzaSyC6k2tkpUPFLBVhpeBGUyGyWWSjrJ8WEdg</string>
+    <string name="google_app_id" translatable="false">1:247409921630:android:f9bc01001bb9cd669d6ecf</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC6k2tkpUPFLBVhpeBGUyGyWWSjrJ8WEdg</string>
+    <string name="google_storage_bucket" translatable="false">store2door-98497.appspot.com</string>
+</resources>
